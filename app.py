@@ -4,46 +4,32 @@ from sys import exit
 from time import sleep
 from os import system as lim
 
-menu = ["Cadatrar motorista", "Transportadora", "Exibir Cadastros", "Sair"]
+menu = [
+    "Cadatrar Motorista",
+    "Transportadora",
+    "Responsável Liberação",
+    "Registrar Entrada",
+    "Registrar Saída",
+    "Exibir Cadastros",
+    "Sair",
+]
 while True:
     titulo("MENU PRICIPAL")
     for i, v in enumerate(menu):
         print(f"{i + 1} → {verde(v)}")
     linha()
 
-    e = n_intrng("Sua escolha: ", 1, 4)
+    e = n_intrng("Sua escolha: ", 1, 7)
     comandos = {
         1: lambda: cdt_moto(),
         2: lambda: cdt_transportadora(),
-        3: lambda: exibir_cdt(),
+        3: lambda: cdt_responsavel(),
+        4: lambda: cdt_entrada(),
+        5: lambda: cdt_saida(),
+        6: lambda: exibir_cadastros(),
     }
     try:
         comando = comandos.get(e)()
     except:
-        if e == 4:
+        if e == 7:
             exit("Sistema finalizado... Volte sempre!")
-
-# while True:
-#     titulo("MENU PRICIPAL")
-#     for i, v in enumerate(menu):
-#         print(f"{i + 1} → {verde(v)}")
-#     linha()
-#     e = n_intrng("Sua escolha: ")
-
-#     if e == 1:
-#         sleep(0.5)
-#         lp("cls")
-#         titulo(f"{menu[0]}")
-#         cdt_moto()
-
-#     elif e == 2:
-#         sleep(0.5)
-#         lp("cls")
-#         titulo(f"{menu[1]}")
-#         exibir_cdt()
-
-#     else:
-#         sleep(0.5)
-#         lp("cls")
-#         titulo(f"{menu[2]}")
-#         exit("Sistema finalizado... Volte sempre!")
