@@ -75,7 +75,7 @@ def cdt_entrada():
                 print(f"Erro: Motorista '{nome_moto}' não encontrado.")
                 continue
 
-            placa_trans = str(input("Placa: ")).strip()
+            placa_trans = str(input("Placa: ")).upper().strip()
             try:
                 transportadora = Tranportadora.get(Tranportadora.placa == placa_trans)
             except Tranportadora.DoesNotExist:
@@ -203,10 +203,12 @@ def exbir_entrada():
         titulo("REGISTROS DE ENTRADA")
 
         entrada = EntradaSaida.select()
-        print(f'{"ID":<6}{"NOME":<30}{"RESPONSÁVEL":<25}{"HORA DA ENTRADA":<22}')
+        print(
+            f'{"ID":<6}{"NOME":<30}{"RESPONSÁVEL":<25}{"HORA DA ENTRADA":<22}{"HORA SAÍDA":<22}'
+        )
         for i in entrada:
             print(
-                f"{i.id:<6}{i.nome_moto_id:<30}{i.nome_resp_id:<25}{i.hora_entrada.strftime('%d/%m/%Y %H:%M:%S'):<60}"
+                f"{i.id:<6}{i.nome_moto_id:<30}{i.nome_resp_id:<25}{i.hora_entrada.strftime('%d/%m/%Y %H:%M:%S'):<60}{i.hora_saida.strftime('%d/%m/%Y %H:%M:%S'):<60}"
             )
 
         linha()
